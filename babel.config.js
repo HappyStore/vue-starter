@@ -1,9 +1,5 @@
 module.exports = {
     presets: [
-        '@babel/preset-env',
-        '@babel/preset-typescript',
+        '@babel/preset-env'
     ],
-    plugins: [
-        ["@babel/plugin-proposal-decorators", { "legacy": true }]
-    ]
 };

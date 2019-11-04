@@ -9,6 +9,14 @@ module.exports = (env, argv) => {
         output: {
             filename: '[name].js',
             path: path.resolve(__dirname, 'dist'),
+            chunkFilename: '[name].chunk.js'
+        },
+        resolve: {
+            extensions: ['.ts', '.js', '.vue', '.json'],
+        },
+        devServer: {
+            contentBase: './dist',
+            hot: true,
         },
         module: {
             rules: [
@@ -24,7 +32,10 @@ module.exports = (env, argv) => {
                 {
                     test: /\.ts$/,
                     exclude: /node_modules/,
-                    use: ['babel-loader'],
+                    use: [{
+                        loader: 'ts-loader',
+                        options: { appendTsSuffixTo: [/\.vue$/] }
+                    }],
                 },
                 {
                     test: /\.(scss|css)$/,
