@@ -5,14 +5,17 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = (env, argv) => {
     return {
-        entry: './src/index.ts',
+        entry: path.resolve(__dirname, 'src'),
         output: {
             filename: '[name].js',
             path: path.resolve(__dirname, 'dist'),
-            chunkFilename: '[name].chunk.js'
+            chunkFilename: '[name].chunk.js',
         },
         resolve: {
-            extensions: ['.ts', '.js', '.vue', '.json'],
+            extensions: ['.ts', '.js'],
+            alias: {
+                '@': path.resolve(__dirname, 'src'),
+            }
         },
         devServer: {
             contentBase: './dist',
@@ -20,10 +23,6 @@ module.exports = (env, argv) => {
         },
         module: {
             rules: [
-                {
-                    test: /\.vue$/,
-                    loader: 'vue-loader',
-                },
                 {
                     test: /\.js$/,
                     exclude: /node_modules/,
@@ -36,6 +35,10 @@ module.exports = (env, argv) => {
                         loader: 'ts-loader',
                         options: { appendTsSuffixTo: [/\.vue$/] }
                     }],
+                },
+                {
+                    test: /\.vue$/,
+                    loader: 'vue-loader',
                 },
                 {
                     test: /\.(scss|css)$/,
@@ -58,6 +61,10 @@ module.exports = (env, argv) => {
                         },
                     ],
                 },
+                {
+                    test: /\.(png|svg|jpg|gif)$/,
+                    use: ['file-loader']
+                },
             ],
         },
         plugins: [
@@ -69,6 +76,10 @@ module.exports = (env, argv) => {
             new HtmlWebpackPlugin({
                 filename: 'index.html',
                 template: path.resolve(__dirname, 'src/index.html'),
+                favicon: path.resolve(__dirname, 'src/assets/favicon.ico'),
+                meta: {
+                    'viewport': 'width=device-width, initial-scale=1, shrink-to-fit=no',
+                }
             }),
         ],
     };

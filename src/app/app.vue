@@ -1,8 +1,7 @@
 <template>
-    <div class="card">
-        Hello, world
+    <div>
         <button @click="btnClick">Button</button>
-        <card v-if="cardVisible"></card>
+        <hello-world v-if="helloWorldVisible"></hello-world>
     </div>
 </template>
 
@@ -11,20 +10,14 @@
 
     @Component({
         components: {
-            'Card': () => import('./components/card.vue'),
+            'helloWorld': () => import('./components/helloWorld.vue'),
         },
     })
     export default class App extends Vue {
-        cardVisible: boolean = false;
+        helloWorldVisible: boolean = false;
 
         btnClick(e: any) {
-            this.cardVisible = !this.cardVisible;
+            this.helloWorldVisible = !this.helloWorldVisible;
         }
     }
 </script>
-
-<style scoped lang="scss">
-    .card {
-        color: blue;
-    }
-</style>

@@ -7,13 +7,13 @@
     "build": "webpack --mode=development --progress",
     "build:prod": "webpack --mode=production --progress",
     "serve": "webpack-dev-server",
-    "babel": "./node_modules/.bin/babel src --out-dir dist --extensions \".ts,.js\""
+    "babel": "./node_modules/.bin/babel src --out-dir dist --extensions \".ts,.js\" --ignore \"src/vue-shims.d.ts\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@babel/polyfill": "^7.6.0",
+    "core-js": "^3.3.6",
     "vue": "^2.6.10",
     "vue-property-decorator": "^8.3.0"
   },
@@ -23,6 +23,7 @@
     "@babel/preset-env": "^7.6.3",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.2.0",
+    "file-loader": "^4.2.0",
     "html-webpack-plugin": "^4.0.0-beta.8",
     "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.13.0",
