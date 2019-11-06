@@ -1,4 +1,4 @@
-## Starting point for a VueJs application.
+## VueJS project blueprint
 
 ### Features:
 - vuejs
